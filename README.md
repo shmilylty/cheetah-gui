@@ -1,4 +1,4 @@
-![cheetah logo](images/logo.jpg)
+![cheetah logo](https://github.com/sunnyelf/cheetah/blob/master/images/logo.jpg)
 
 [English description](README.md) | [中文说明](README_zh.md)
 
