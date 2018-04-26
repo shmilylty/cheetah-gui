@@ -1,5 +1,6 @@
 # coding=utf-8
 import sys
+import platform
 import cheetah_support
 from os import path
 
@@ -61,11 +62,21 @@ class Cheetah:
         self.style.configure('.', foreground=_fgcolor)
         self.style.configure('.', font="TkDefaultFont")
         self.style.map('.', background=[('selected', _compcolor), ('active', _ana2color)])
-        self.logo_path = path.join(data_dir, 'cheetah.ico')
+        self.icon_dir = path.join(data_dir, 'icon')
 
-        if path.exists(self.logo_path):
-            top.iconbitmap(default=self.logo_path)
-        # top.iconify()
+        if platform.system() == 'Windows':
+            self.icon_path = path.join(self.icon_dir, 'cheetah.ico')
+            if path.exists(self.icon_path):
+                top.iconbitmap(default=self.icon_path)
+        if platform.system() == 'Darwin':
+            self.icon_path = path.join(self.icon_dir, 'cheetah.icns')
+            if path.exists(self.icon_path):
+                top.iconbitmap(default=self.icon_path)
+        if platform.system() == 'Linux':
+            self.icon_path = path.join(self.icon_dir, 'cheetah.xbm')
+            if path.exists(self.icon_path):
+                top.iconbitmap(default=self.icon_path)
+
         top.geometry("600x450+393+128")
         top.title("Cheetah")
         top.configure(background="#d9d9d9")
