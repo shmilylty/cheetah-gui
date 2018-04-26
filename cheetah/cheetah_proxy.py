@@ -107,7 +107,7 @@ class CheetahProxySetting:
         self.TEntry1.place(relx=0.18, rely=0.31, relheight=0.05, relwidth=0.19)
         self.TEntry1.configure(textvariable=cheetah_proxy_support.address)
         self.TEntry1.configure(takefocus="")
-        self.TEntry1.configure(cursor="ibeam")
+        # self.TEntry1.configure(cursor="ibeam")
 
         # self.TEntry2 = ttk.Entry(top)
         # self.TEntry2.place(relx=0.18, rely=0.35, relheight=0.05, relwidth=0.19)
@@ -143,7 +143,7 @@ class CheetahProxySetting:
         self.TEntry3.place(relx=0.18, rely=0.55, relheight=0.05, relwidth=0.19)
         self.TEntry3.configure(textvariable=cheetah_proxy_support.username)
         self.TEntry3.configure(takefocus="")
-        self.TEntry3.configure(cursor="ibeam")
+        # self.TEntry3.configure(cursor="ibeam")
 
         self.TLabel2 = ttk.Label(top)
         self.TLabel2.place(relx=0.07, rely=0.63, height=21, width=67)
@@ -157,7 +157,7 @@ class CheetahProxySetting:
         self.TEntry4.place(relx=0.18, rely=0.63, relheight=0.05, relwidth=0.19)
         self.TEntry4.configure(textvariable=cheetah_proxy_support.password)
         self.TEntry4.configure(takefocus="")
-        self.TEntry4.configure(cursor="ibeam")
+        # self.TEntry4.configure(cursor="ibeam")
 
         self.Scrolledlistbox1 = ScrolledListBox(top)
         self.Scrolledlistbox1.place(relx=0.4, rely=0.31, relheight=0.47, relwidth=0.52)

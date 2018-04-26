@@ -1,7 +1,9 @@
 # coding=utf-8
+import io
 import sys
 import time
-from os import path
+from os import path, name
+from cheetah_config_operation import read_config, write_config
 
 if sys.version_info.major == 2:
     from tkFileDialog import askopenfilename
@@ -10,14 +12,15 @@ else:
     from tkinter.filedialog import askopenfilename
     from tkinter.messagebox import showinfo, showerror
 
-from cheetah_config_operation import read_config, write_config
-
 data_dir = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data'))
 
 
 def set_tk_var():
     global dict_path
-    dict_path = path.abspath(read_config("Dictionary", "Path", "str"))
+    relative_path = read_config("Dictionary", "Path", "str")
+    if name != 'nt':
+        relative_path = relative_path.replace('\\', '/')
+    dict_path = path.abspath(relative_path)
     small_dict_path = path.join(data_dir, "pwd.txt")
     big_dict_path = path.join(data_dir, "big_pwd.txt")
     global dict_list
@@ -35,7 +38,7 @@ def set_pwd_file():
 
 
 def read_chunks(pwd_file):
-    with open(pwd_file, encoding='utf-8') as pwd_file:
+    with io.open(pwd_file, encoding='utf-8') as pwd_file:
         while 1:
             chunk_data = pwd_file.read(100 * 1024 * 1024)
             if not chunk_data:
@@ -55,7 +58,7 @@ def dereplicat_pwd_file():
     time_str = str(time.strftime(format_str, time.localtime()))
     new_dict_name = 'deduplicated' + time_str + base_name
     new_dict_path = path.join(data_dir, new_dict_name)
-    with open(new_dict_path, mode='a', encoding='utf-8') as new_file:
+    with io.open(new_dict_path, mode='a', encoding='utf-8') as new_file:
         for chunk in read_chunks(pwd_path):
             new_file.write('\n'.join(set(chunk.split())).lower())
     title = "Cheetah Info"

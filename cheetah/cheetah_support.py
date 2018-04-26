@@ -1,5 +1,6 @@
 # coding=utf-8
 from __future__ import division
+import io
 import sys
 import time
 import string
@@ -116,7 +117,7 @@ def forge_header(options):
     header['Host'] = req_host
     if options.rand_ua:
         agent_path = path.join(data_dir, 'user-agent.txt')
-        with open(agent_path, encoding='utf-8') as agent_file:
+        with io.open(agent_path, encoding='utf-8') as agent_file:
             agent_list = agent_file.readlines()
             random_agent = random.choice(agent_list).strip()
             header['User-Agent'] = random_agent
@@ -140,7 +141,7 @@ def get_proxy(options):
     proxies = None
     if options.use_proxy:
         proxy_path = path.join(data_dir, 'proxy.txt')
-        with open(proxy_path, encoding='utf-8') as proxy_file:
+        with io.open(proxy_path, encoding='utf-8') as proxy_file:
             proxy_list = proxy_file.readlines()
             if len(proxy_list) != 0:
                 proxy = random.choice(proxy_list).strip()
@@ -196,7 +197,7 @@ def req_get(payload, times, options):
         format_output('i', 'Web server responds successfully')
         if r.text in payload:
             find_path = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data', 'find.txt'))
-            with open(find_path, mode='a', encoding='utf-8') as find_file:
+            with io.open(find_path, mode='a', encoding='utf-8') as find_file:
                 find_file.write(options.url + '\t\t' + r.text + '\n')
             format_output('h', 'The password of {} is {}'.format(options.url, r.text))
             title = "Cheetah Info"
@@ -248,7 +249,7 @@ def req_post(payload, times, options):
         format_output('i', 'Web server responds successfully')
         if r.text in payload:
             find_path = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data', 'find.txt'))
-            with open(find_path, mode='a', encoding='utf-8') as find_file:
+            with io.open(find_path, mode='a', encoding='utf-8') as find_file:
                 find_file.write(options.url + '\t\t' + r.text + '\n')
             format_output('h', 'The password of {} is {}'.format(options.url, r.text))
             title = "Cheetah Info"
@@ -411,7 +412,7 @@ def get_url(options):
     url_list = list()
     if path.isfile(options.target_obj):
         if path.exists(options.target_obj):
-            with open(options.target_obj, encoding='utf-8') as url_file:
+            with io.open(options.target_obj, encoding='utf-8') as url_file:
                 for line in url_file:
                     line = line.strip()
                     if isinstance(line, str):
@@ -455,7 +456,7 @@ def brute_force():
             detect_web(options)
         set_max_req(options)
         format_output('i', 'Opening password file ' + options.dict_path)
-        pwd_file = open(options.dict_path, encoding='utf-8')
+        pwd_file = io.open(options.dict_path, encoding='utf-8')
         total_size = path.getsize(options.dict_path)
         format_output('h', 'Using password file ' + options.dict_path)
         format_output('i', 'Cracking password of ' + options.url)
@@ -526,7 +527,7 @@ def brute_force():
 def save_log():
     logs = w.Scrolledlistbox1.get("0", END)
     log_path = path.join(data_dir, 'log.txt')
-    with open(log_path, mode='a', encoding='utf-8') as log_file:
+    with io.open(log_path, mode='a', encoding='utf-8') as log_file:
         log_file.write("\n".join(logs))
 
 

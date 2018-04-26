@@ -1,4 +1,5 @@
 # coding=utf-8
+import io
 import sys
 from os import path
 
@@ -7,7 +8,7 @@ if sys.version_info.major == 2:
 else:
     from configparser import ConfigParser
 
-config_path = path.join(path.abspath(__file__), path.pardir, "cheetah_config.ini")
+config_path = path.abspath(path.join(path.dirname(__file__), "cheetah_config.ini"))
 
 
 def read_config(section, key, types):
@@ -26,5 +27,8 @@ def read_config(section, key, types):
 def write_config(section, key, value):
     config = ConfigParser()
     config.read(config_path)
-    config.set(section, key, str(value))
-    config.write(open(config_path, mode='w', encoding='utf-8'))
+    if sys.version_info.major == 3:
+        config.set(section, key, str(value))
+    else:
+        config.set(section, key, value)
+    config.write(open(config_path, mode='w'))

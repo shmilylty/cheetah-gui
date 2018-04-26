@@ -1,8 +1,9 @@
 # coding=utf-8
+import io
 import sys
 import time
 import requests
-from os import path, rename
+from os import path, name, rename
 from cheetah_config_operation import read_config, write_config
 from cheetah_validator import is_host
 
@@ -37,7 +38,10 @@ def set_tk_var():
     password.set(read_config("Proxy", "Password", "str"))
     global proxy_list
     proxy_list = StringVar()
-    proxy_list.set(path.abspath(read_config("Proxy", "List", "str")))
+    relative_path = read_config("Proxy", "List", "str")
+    if name != 'nt':
+        relative_path = relative_path.replace('\\', '/')
+    proxy_list.set(path.abspath(relative_path))
     global proxy_api
     proxy_api = StringVar()
     proxy_api.set(read_config("Proxy", "API", "str"))
@@ -94,7 +98,7 @@ def add_proxy(data):
 def save_proxy():
     proxys = w.Scrolledlistbox1.get(0, 'end')
     proxy_path = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data', 'proxy.txt'))
-    with open(proxy_path, mode='a', encoding='utf-8') as proxy_file:
+    with io.open(proxy_path, mode='a', encoding='utf-8') as proxy_file:
         proxy_file.write("\n".join(proxys))
 
 
@@ -105,7 +109,7 @@ def save_validated_proxy():
         time_stamp = int(time.time())
         proxy_bak_path = '{}.{}.bak'.format(proxy_path, time_stamp)
         rename(proxy_path, proxy_bak_path)
-    with open(proxy_path, mode='w', encoding='utf-8') as proxy_file:
+    with io.open(proxy_path, mode='w', encoding='utf-8') as proxy_file:
         proxy_file.write("\n".join(proxys))
 
 
@@ -181,7 +185,7 @@ def import_proxy_list():
         w.TCombobox2.set(proxy_path)
         write_config("Proxy", "List", proxy_path)
 
-        with open(proxy_path, encoding='utf-8') as proxy_file:
+        with io.open(proxy_path, encoding='utf-8') as proxy_file:
             for proxy_line in proxy_file:
                 proxys_data = proxy_line.strip()
                 add_proxy(proxys_data)

@@ -13,9 +13,7 @@ else:
     import tkinter.ttk as ttk
     py3 = True
 
-
 data_dir = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data'))
-
 
 def vp_start_gui():
     """Starting point when module is the main routine."""
@@ -71,11 +69,13 @@ class Cheetah:
         if platform.system() == 'Darwin':
             self.icon_path = path.join(self.icon_dir, 'cheetah.icns')
             if path.exists(self.icon_path):
-                top.iconbitmap(default=self.icon_path)
+                self.icon_path = '@{}'.format(self.icon_path)
+                top.iconbitmap(bitmap=self.icon_path)
         if platform.system() == 'Linux':
             self.icon_path = path.join(self.icon_dir, 'cheetah.xbm')
             if path.exists(self.icon_path):
-                top.iconbitmap(default=self.icon_path)
+                self.icon_path = '@{}'.format(self.icon_path)
+                top.iconbitmap(bitmap=self.icon_path)
 
         top.geometry("600x450+393+128")
         top.title("Cheetah")
@@ -180,7 +180,7 @@ class Cheetah:
         self.TCombobox1.configure(takefocus="")
 
         self.TButton1 = ttk.Button(top)
-        self.TButton1.place(relx=0.78, rely=0.04, height=25, width=27)
+        self.TButton1.place(relx=0.785, rely=0.04, height=25, width=27)
         self.TButton1.configure(command=cheetah_support.set_url_file)
         self.TButton1.configure(takefocus="")
         self.TButton1.configure(text='''...''')
