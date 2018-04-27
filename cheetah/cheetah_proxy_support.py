@@ -77,7 +77,7 @@ def save_config():
     write_config("Proxy", "Protocol", protocol.get())
     write_config("Proxy", "Username", username.get())
     write_config("Proxy", "Password", password.get())
-    write_config("Proxy", "List", proxy_list.get())
+    write_config("Proxy", "List", proxy_path_var.get())
     write_config("Proxy", "API", proxy_api.get())
     write_config("Proxy", "TestAddress", test_address.get())
     write_config("Proxy", "Proxy", use_proxy.get())
@@ -98,7 +98,7 @@ def add_proxy(data):
 def save_proxy():
     proxys = w.Scrolledlistbox1.get(0, 'end')
     proxy_path = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data', 'proxy.txt'))
-    with io.open(proxy_path, mode='a', encoding='utf-8') as proxy_file:
+    with open(proxy_path, mode='a') as proxy_file:
         proxy_file.write("\n".join(proxys))
 
 
@@ -109,7 +109,7 @@ def save_validated_proxy():
         time_stamp = int(time.time())
         proxy_bak_path = '{}.{}.bak'.format(proxy_path, time_stamp)
         rename(proxy_path, proxy_bak_path)
-    with io.open(proxy_path, mode='w', encoding='utf-8') as proxy_file:
+    with open(proxy_path, mode='w') as proxy_file:
         proxy_file.write("\n".join(proxys))
 
 
