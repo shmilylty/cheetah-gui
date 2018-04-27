@@ -191,7 +191,7 @@ class CheetahProxySetting:
         self.TCombobox2 = ttk.Combobox(top)
         self.TCombobox2.place(relx=0.18, rely=0.12, relheight=0.05, relwidth=0.61)
         self.TCombobox2.configure(values=self.value_list)
-        self.TCombobox2.configure(textvariable=cheetah_proxy_support.proxy_list)
+        self.TCombobox2.configure(textvariable=cheetah_proxy_support.proxy_path_var)
         self.TCombobox2.configure(width=360)
         self.TCombobox2.configure(takefocus="")
 

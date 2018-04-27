@@ -92,8 +92,9 @@ class CheetahDictionarySetting:
         self.TCombobox1 = ttk.Combobox(top)
         self.TCombobox1.place(relx=0.15, rely=0.27, relheight=0.18, relwidth=0.74)
         self.TCombobox1.configure(values=cheetah_dictionary_support.dict_list)
+        self.TCombobox1.configure(textvariable=cheetah_dictionary_support.dict_path_var)
         self.TCombobox1.configure(takefocus="")
-        self.TCombobox1.set(cheetah_dictionary_support.dict_path)
+        # self.TCombobox1.set(cheetah_dictionary_support.dict_path)
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ import random
 import requests
 import webbrowser
 from os import path
-from cheetah_init import initialize_cheetah
+import cheetah_init
 from cheetah_validator import is_url
 from cheetah_config_operation import read_config
 import cheetah_about
@@ -455,6 +455,8 @@ def brute_force():
         if options.server_type == 'detect' or options.shell_type == 'detect':
             detect_web(options)
         set_max_req(options)
+        if len(options.dict_path) == 0:
+            options.dict_path = path.join(data_dir, 'pwd.txt')
         format_output('i', 'Opening password file ' + options.dict_path)
         pwd_file = io.open(options.dict_path, encoding='utf-8')
         total_size = path.getsize(options.dict_path)
@@ -527,7 +529,7 @@ def brute_force():
 def save_log():
     logs = w.Scrolledlistbox1.get("0", END)
     log_path = path.join(data_dir, 'log.txt')
-    with io.open(log_path, mode='a', encoding='utf-8') as log_file:
+    with open(log_path, mode='a') as log_file:
         log_file.write("\n".join(logs))
 
 
@@ -555,7 +557,7 @@ def init(top, gui):
     w = gui
     top_level = top
     root = top
-    initialize_cheetah(root)
+    cheetah_init.initialize_cheetah(root)
 
 
 def destroy_window():

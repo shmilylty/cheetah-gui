@@ -36,12 +36,12 @@ def set_tk_var():
     global password
     password = StringVar()
     password.set(read_config("Proxy", "Password", "str"))
-    global proxy_list
-    proxy_list = StringVar()
-    relative_path = read_config("Proxy", "List", "str")
-    if name != 'nt':
-        relative_path = relative_path.replace('\\', '/')
-    proxy_list.set(path.abspath(relative_path))
+    global proxy_path_var
+    proxy_path_var = StringVar()
+    proxy_path = read_config("Proxy", "Path", "str")
+    if len(proxy_path) == 0:
+        proxy_path = path.join(data_dir, 'proxy.txt')
+    proxy_path_var.set(proxy_path)
     global proxy_api
     proxy_api = StringVar()
     proxy_api.set(read_config("Proxy", "API", "str"))

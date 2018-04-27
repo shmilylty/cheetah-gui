@@ -8,23 +8,24 @@ from cheetah_config_operation import read_config, write_config
 if sys.version_info.major == 2:
     from tkFileDialog import askopenfilename
     from tkMessageBox import showinfo, showerror
+    from Tkinter import StringVar
 else:
     from tkinter.filedialog import askopenfilename
     from tkinter.messagebox import showinfo, showerror
+    from tkinter import StringVar
 
 data_dir = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data'))
 
 
 def set_tk_var():
-    global dict_path
-    relative_path = read_config("Dictionary", "Path", "str")
-    if name != 'nt':
-        relative_path = relative_path.replace('\\', '/')
-    dict_path = path.abspath(relative_path)
-    small_dict_path = path.join(data_dir, "pwd.txt")
-    big_dict_path = path.join(data_dir, "big_pwd.txt")
+    global dict_path_var
+    dict_path_var = StringVar()
+    dict_path = read_config("Dictionary", "Path", "str")
+    if len(dict_path) == 0:
+        dict_path = path.join(data_dir, 'pwd.txt')
+    dict_path_var.set(dict_path)
     global dict_list
-    dict_list = [small_dict_path, big_dict_path]
+    dict_list = [dict_path, ]
 
 
 def set_pwd_file():
@@ -69,6 +70,8 @@ def dereplicat_pwd_file():
 
 
 def exit_dict_setting():
+    get_dict_path = w.TCombobox1.get()
+    write_config("Dictionary", "Path", get_dict_path)
     destroy_window()
 
 
