@@ -29,6 +29,7 @@ def set_tk_var():
 
 
 def set_pwd_file():
+    w.Button1.configure(state='disable')
     dict_file = askopenfilename(initialdir=data_dir, initialfile="pwd.txt",
                                 parent=root, filetypes=[("text files", "*.txt")])
     if path.isfile(dict_file):
@@ -36,6 +37,7 @@ def set_pwd_file():
         w.TCombobox1.insert(0, dict_file)
         w.TCombobox1.set(dict_file)
         write_config("Dictionary", "Path", dict_file)
+    w.Button1.configure(state='normal')
 
 
 def read_chunks(pwd_file):

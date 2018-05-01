@@ -1,4 +1,6 @@
 # coding=utf-8
+import platform
+
 try:
     from Tkinter import *
 except ImportError:
@@ -50,6 +52,15 @@ class CheetahDocs:
            top is the toplevel containing window."""
         font9 = "-family Consolas -size 9 -weight normal -slant roman " \
                 "-underline 0 -overstrike 0"
+        if platform.system() == 'Windows':
+            font9 = "-family Consolas -size 9 -weight normal -slant roman " \
+                    "-underline 0 -overstrike 0"
+        if platform.system() == 'Darwin':
+            font9 = "-family Monaco -size 10 -weight normal -slant roman " \
+                    "-underline 0 -overstrike 0"
+        if platform.system() == 'Linux':
+            font9 = "-family SourceCodePro -size 9 -weight normal -slant roman " \
+                    "-underline 0 -overstrike 0"
         top.geometry("669x405+360+140")
         top.title("Cheetah Docs")
         top.configure(background="#d9d9d9")
@@ -73,7 +84,7 @@ _  ___/__  __ \_  _ \_  _ \_  __/_  __ \ __  __ \
 / /__  _  / / //  __//  __// /_  / /_/ / _  / / /
 \___/  / / /_/ \___/ \___/ \__/  \____/  / / /_/ 
       /_/                               /_/      
-                                                 
+
 a very fast brute force webshell password tool.''')
         self.banner.configure(width=367)
 
@@ -81,6 +92,7 @@ a very fast brute force webshell password tool.''')
         self.help.place(relx=0.04, rely=0.42, relheight=0.53, relwidth=0.91)
         self.help.configure(background="#d9d9d9")
         self.help.configure(font=font9)
+
         self.help.configure(foreground="#000000")
         self.help.configure(highlightbackground="#d9d9d9")
         self.help.configure(highlightcolor="black")

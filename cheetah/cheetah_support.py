@@ -45,7 +45,7 @@ def set_tk_var():
     state.set("Start")
     global progress_status
     progress_status = StringVar()
-    progress_status.set("Progress status: Ready")
+    progress_status.set("Status: Ready")
 
 
 def check_updates():
@@ -73,6 +73,7 @@ def set_proxy():
 
 
 def set_url_file():
+    w.Button1.configure(state='disable')
     url_file = askopenfilename(initialfile=w.url_path, initialdir=w.data_dir,
                                parent=root, filetypes=[("text files", "*.txt")])
     if path.isfile(url_file):
@@ -83,6 +84,7 @@ def set_url_file():
         title = "Cheetah Error"
         message = "The selected file should be text file."
         showerror(title, message, parent=root)
+    w.Button1.configure(state='normal')
 
 
 def format_time():
@@ -438,7 +440,7 @@ def get_url(options):
 
 
 def brute_force():
-    progress_status.set("Progress status: Start")
+    progress_status.set("Status: Start")
     options = GetOptions()
     url_list = get_url(options)
     url_num = len(url_list)
@@ -457,10 +459,9 @@ def brute_force():
         set_max_req(options)
         if len(options.dict_path) == 0:
             options.dict_path = path.join(data_dir, 'pwd.txt')
-        format_output('i', 'Opening password file ' + options.dict_path)
+        format_output('h', 'Using password file ' + options.dict_path)
         pwd_file = io.open(options.dict_path, encoding='utf-8')
         total_size = path.getsize(options.dict_path)
-        format_output('h', 'Using password file ' + options.dict_path)
         format_output('i', 'Cracking password of ' + options.url)
 
         times = 0
@@ -474,7 +475,7 @@ def brute_force():
             for x in range(options.para_num):
                 read_size = pwd_file.tell()
                 progress = read_size * 100 / total_size
-                progress_status.set("Progress status: {:.1f}%".format(progress))
+                progress_status.set("Status: {:.1f}%".format(progress))
                 line = pwd_file.readline()
                 if line == "":
                     last = True
@@ -540,8 +541,8 @@ def start_brute_force():
         format_output('i', "The cheetah begins execution")
         brute_force()
         format_output('i', "The cheetah ends execution")
-        progress_status.set("Progress status: End")
-        progress_status.set("Progress status: Ready")
+        progress_status.set("Status: End")
+        progress_status.set("Status: Ready")
         state.set("Start")
         w.TButton2.configure(state="normal")
         save_log()

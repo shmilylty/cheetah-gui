@@ -43,7 +43,7 @@ class CheetahAbout:
         _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
 
-        top.geometry("530x388+432+184")
+        top.geometry("560x388+432+184")
         top.title("Cheetah About")
         top.configure(background="#d9d9d9")
         top.configure(highlightbackground="#d9d9d9")
@@ -63,7 +63,7 @@ class CheetahAbout:
         License: GNU GPLv3
         Author: admin[@hackfun.org]
         Github: https://github.com/sunnyelf/cheetah
-        
+
         Description:
         Cheetah is a dictionary-based webshell password violent cracker
         that runs like a cheetah hunt for prey as swift and violent.
@@ -71,7 +71,7 @@ class CheetahAbout:
         of detection passwords based on different web services at once,
         blasting efficiency is thousands of times other common webshell
         password violent crack tools.''')
-        self.Message1.configure(width=447)
+        self.Message1.configure(width=460)
         self.menubar = Menu(top, font="TkMenuFont", bg=_bgcolor, fg=_fgcolor)
         top.configure(menu=self.menubar)
 

@@ -15,6 +15,7 @@ else:
 
 data_dir = path.abspath(path.join(path.dirname(__file__), path.pardir, 'data'))
 
+
 def vp_start_gui():
     """Starting point when module is the main routine."""
     global val, w, root
@@ -162,13 +163,16 @@ class Cheetah:
             foreground="#000000",
             label="Update...")
 
-        self.TLabel1 = ttk.Label(top)
-        self.TLabel1.place(relx=0.03, rely=0.04, height=21, width=49)
-        self.TLabel1.configure(background="#d9d9d9")
-        self.TLabel1.configure(foreground="#000000")
-        self.TLabel1.configure(font="TkDefaultFont")
-        self.TLabel1.configure(relief=FLAT)
-        self.TLabel1.configure(text='''Target :''')
+        self.Label1 = Label(top)
+        self.Label1.place(relx=0.03, rely=0.04, height=21, width=52)
+        self.Label1.configure(activebackground="#f9f9f9")
+        self.Label1.configure(activeforeground="black")
+        self.Label1.configure(background="#d9d9d9")
+        self.Label1.configure(disabledforeground="#a3a3a3")
+        self.Label1.configure(foreground="#000000")
+        self.Label1.configure(highlightbackground="#d9d9d9")
+        self.Label1.configure(highlightcolor="black")
+        self.Label1.configure(text='''Target :''')
 
         self.TCombobox1 = ttk.Combobox(top)
         self.TCombobox1.place(relx=0.13, rely=0.04, relheight=0.055, relwidth=0.66)
@@ -179,14 +183,14 @@ class Cheetah:
         self.TCombobox1.configure(textvariable=cheetah_support.target)
         self.TCombobox1.configure(takefocus="")
 
-        self.TButton1 = ttk.Button(top)
-        self.TButton1.place(relx=0.785, rely=0.04, height=25, width=27)
-        self.TButton1.configure(command=cheetah_support.set_url_file)
-        self.TButton1.configure(takefocus="")
-        self.TButton1.configure(text='''...''')
+        self.Button1 = Button(top)
+        self.Button1.place(relx=0.785, rely=0.04, height=24, width=24)
+        self.Button1.configure(command=cheetah_support.set_url_file)
+        self.Button1.configure(takefocus="")
+        self.Button1.configure(text='''...''')
 
         self.TButton2 = ttk.Button(top)
-        self.TButton2.place(relx=0.85, rely=0.04, height=27, width=67)
+        self.TButton2.place(relx=0.84, rely=0.04, height=27, width=84)
         self.TButton2.configure(command=cheetah_support.start_brute_force)
         self.TButton2.configure(takefocus="")
         self.TButton2.configure(textvariable=cheetah_support.state)
@@ -204,13 +208,13 @@ class Cheetah:
         self.Scrolledlistbox1.configure(width=10)
 
         self.Message1 = Message(top)
-        self.Message1.place(relx=0.02, rely=0.93, relheight=0.06, relwidth=0.26)
+        self.Message1.place(relx=0.02, rely=0.93)
         self.Message1.configure(background="#d9d9d9")
         self.Message1.configure(foreground="#000000")
         self.Message1.configure(highlightbackground="#d9d9d9")
         self.Message1.configure(highlightcolor="black")
         self.Message1.configure(textvariable=cheetah_support.progress_status)
-        self.Message1.configure(width=137)
+        self.Message1.configure(width=100)
 
 
 # The following code is added to facilitate the Scrolled widgets you specified.
