@@ -5,8 +5,10 @@ from os import system
 from cheetah_config_operation import read_config, write_config
 
 if sys.version_info.major == 2:
+    pip = 'pip2'
     from tkMessageBox import showinfo, showwarning
 else:
+    pip = 'pip3'
     from tkinter.messagebox import showinfo, showwarning
 
 
@@ -20,7 +22,7 @@ def install_dependent(root):
     title = 'Cheetah Warn'
     message = 'Cheetah is about to install the missing dependencies.'
     showwarning(title, message, parent=root)
-    system('pip install -r requirements.txt')
+    system('{} install -r requirements.txt'.format(pip))
     title = 'Cheetah Info'
     message = 'Cheetah completed the dependent installation,' \
               '\nCheetah will end running, please run again.'
