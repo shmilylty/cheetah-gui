@@ -21,8 +21,8 @@ def set_tk_var():
     update_msg = StringVar()
     global current_ver
     current_ver = 2.1
-    msg = "The current Cheetah version is %.1f, " \
-          "do you need to check for updates?" % current_ver
+    msg = "The current Cheetah version is {}, " \
+          "do you need to check for updates?".format(current_ver)
     update_msg.set(msg)
 
 
@@ -80,7 +80,7 @@ def check_updates():
             w.TButton1.configure(state="normal")
             check_update.set("Update")
         else:
-            msg = "The current cheetah is already the latest version."
+            msg = "The current Cheetah version {} is already the latest version.".format(current_ver)
             update_msg.set(msg)
             w.TButton1.configure(state="normal")
             check_update.set("OK")
