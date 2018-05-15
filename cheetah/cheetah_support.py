@@ -484,13 +484,13 @@ def brute_force():
             payload = dict()
             for pwd in pwds:
                 if options.shell_type == 'php':
-                    payload[pwd] = '$s=' + pwd + ';print($s);'
+                    payload[pwd] = 'print({});'.format(pwd)
                 if options.shell_type == 'asp':
-                    payload[pwd] = 'response.write("' + pwd + '")'
+                    payload[pwd] = 'response.write("{}")'.format(pwd)
                 if options.shell_type == 'aspx':
-                    payload[pwd] = 'Response.Write("' + pwd + '");'
+                    payload[pwd] = 'Response.Write("{}}");'.format(pwd)
                 if options.shell_type == 'jsp':
-                    payload[pwd] = 'System.out.println("' + pwd + '");'
+                    payload[pwd] = 'System.out.println("{}}");'.format(pwd)
             del pwds[:]
 
             if options.req_type == 'post':
