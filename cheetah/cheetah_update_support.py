@@ -20,7 +20,7 @@ def set_tk_var():
     global update_msg
     update_msg = StringVar()
     global current_ver
-    current_ver = 2.1
+    current_ver = 2.2
     msg = "The current Cheetah version is {}, " \
           "do you need to check for updates?".format(current_ver)
     update_msg.set(msg)
