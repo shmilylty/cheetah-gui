@@ -348,42 +348,42 @@ def set_max_req(options):
     format_output('i', "Setting appropriate number of parameters")
     if options.req_type == 'post':
         if 'apache' in options.server_type:
-            if options.para_num > 1000:
+            if options.para_num == 0 or options.para_num > 1000:
                 options.para_num = 1000
         elif 'nginx' in options.server_type:
-            if options.para_num > 1000:
+            if options.para_num == 0 or options.para_num > 1000:
                 options.para_num = 1000
         elif 'iis' in options.server_type:
-            if options.para_num > 4000:
+            if options.para_num == 0 or options.para_num > 4000:
                 options.para_num = 4000
         else:
-            if options.para_num > 1000:
+            if options.para_num == 0 or options.para_num > 1000:
                 options.para_num = 1000
     if options.req_type == 'get':
         if 'apache' in options.server_type:
-            if options.para_num > 100:
+            if options.para_num == 0 or options.para_num > 100:
                 options.para_num = 100
         elif 'nginx' in options.server_type:
-            if options.para_num > 756:
+            if options.para_num == 0 or options.para_num > 756:
                 options.para_num = 756
         elif 'iis' in options.server_type:
-            if options.para_num > 45:
+            if options.para_num == 0 or options.para_num > 45:
                 options.para_num = 45
         else:
-            if options.para_num > 45:
+            if options.para_num == 0 or options.para_num > 45:
                 options.para_num = 45
     if options.req_type == 'both':
         if 'apache' in options.server_type:
-            if options.para_num > 100:
+            if options.para_num == 0 or options.para_num > 100:
                 options.para_num = 100
         elif 'nginx' in options.server_type:
-            if options.para_num > 756:
+            if options.para_num == 0 or options.para_num > 756:
                 options.para_num = 756
         elif 'iis' in options.server_type:
-            if options.para_num > 45:
+            if options.para_num == 0 or options.para_num > 45:
                 options.para_num = 45
         else:
-            if options.para_num > 45:
+            if options.para_num == 0 or options.para_num > 45:
                 options.para_num = 45
     format_output('i', 'The web server {} {} default setting {}'
                   .format(options.server_type, options.req_type, options.para_num))

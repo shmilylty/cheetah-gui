@@ -103,7 +103,7 @@ Stop                    Stop brute force
 Method                  Select request method(default POST)
 Server                  Select web server name(default detect)
 Type                    Select webshell type(default detect)
-Parameter               Set the number of request parameters(default 1000)
+Parameter               Set the number of request parameters(default 0 auto-set)
 Thread number           Set the number of request threads(default 1)
 Request delay           Set the request delay(default 0s)
 Request timeout         Set the request timeout(default 10s)
