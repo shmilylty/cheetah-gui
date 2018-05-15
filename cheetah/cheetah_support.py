@@ -529,9 +529,10 @@ def brute_force():
 
 def save_log():
     logs = w.Scrolledlistbox1.get("0", END)
+    log_msg = "\n".join(logs) + '\n'
     log_path = path.join(data_dir, 'log.txt')
     with open(log_path, mode='a') as log_file:
-        log_file.write("\n".join(logs))
+        log_file.write(log_msg)
 
 
 def start_brute_force():
